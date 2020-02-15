@@ -1,0 +1,87 @@
+@import url(chrome/button_effect_icon_glow.css);
+@import url(chrome/blank_page_background.css);
+@import url(chrome/dark_additional_windows.css);
+@import url(chrome/dark_checkboxes_and_radios.css);
+@import url(chrome/dark_context_menus.css);
+@import url(chrome/minimal_in-UI_scrollbars.css);
+@import url(chrome/minimal_text_fields.css);
+@import url(content/about_page_scrollbars.css);
+@import url(content/css_scrollbar_width_color.css);
+@import url(content/dark_settings_pages.css);
+@import url(content/newtab_background_color.css);
+
+
+:root{
+  --toolbar-bgcolor: black !important;
+  --uc-menu-bkgnd: var(--toolbar-bgcolor);
+  --arrowpanel-background: var(--toolbar-bgcolor) !important;
+  --autocomplete-popup-background: var(--toolbar-bgcolor) !important;
+  background-color: black !important;
+}
+
+#urlbar-background{ background-color: black !important }
+#sidebar-box{ --sidebar-background-color: var(--toolbar-bgcolor) !important; }
+window.sidebar-panel{ --lwt-sidebar-background-color: black !important; }
+
+/* Hide the whole toolbar area unless urlbar is focused or cursor is over the toolbar */
+/* Dimensions on non-Win10 OS probably needs to be adjusted */
+
+@media (-moz-os-version: windows-win10){
+
+  :root[sizemode="maximized"]:not([inDOMFullscreen]){ margin-top: 10px !important; }
+  :root[sizemode="maximized"] #navigator-toolbox{ margin-top: -2px }
+
+  @media screen and (min-resolution: 1.25dppx){
+    :root[sizemode="maximized"]:not([inDOMFullscreen]){ margin-top: 9px !important; }
+  }
+  @media screen and (min-resolution: 1.5dppx){
+    :root[sizemode="maximized"]:not([inDOMFullscreen]){ margin-top: 8px !important; }
+    :root[sizemode="maximized"] #navigator-toolbox{ margin-top: -1px }
+  }
+  @media screen and (min-resolution: 2dppx){
+    :root[sizemode="maximized"]:not([inDOMFullscreen]){ margin-top: 7px !important; }
+  }
+}
+
+:root[sizemode="fullscreen"]{ margin-top: 0px !important; }
+
+#navigator-toolbox{
+  position: fixed !important;
+  display: block;
+  background-color: var(--lwt-accent-color,black) !important;
+  transition: transform 82ms 33ms linear, opacity 82ms 33ms linear !important;
+  transform-origin: top;
+  line-height: 0;
+  z-index: 1;
+}
+
+#navigator-toolbox > *{ line-height: normal }
+
+#navigator-toolbox,
+#navigator-toolbox > *{
+  width: 100vw;
+  -moz-appearance: none !important;
+}
+
+#navigator-toolbox:not(:focus-within):not(:hover){
+  transform: rotateX(86deg);
+  opacity: 0;
+}
+
+:root[sizemode="maximized"] #navigator-toolbox:not(:focus-within):not(:hover){ transform: rotateX(89.5deg) }
+
+:root[customizing] #navigator-toolbox{
+	position: relative !important;
+	transform: none !important;
+	opacity: 1 !important;
+}
+
+#navigator-toolbox[inFullscreen] > #PersonalToolbar,
+#PersonalToolbar[collapsed="true"]{ display: none }
+
+/* Uncomment this if tabs toolbar is hidden with hide_tabs_toolbar.css */
+ /*#titlebar{ margin-bottom: -9px }*/
+
+.tab-line[selected="true"] {
+  background-color:white !important;
+}
